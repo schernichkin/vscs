@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<CodeSnippets  xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+    <CodeSnippet Format="1.0.0">
+        <Header>
+            <Title>conprop</Title>
+            <Shortcut>conprop</Shortcut>
+            <Description>Code snippet for configuration property</Description>
+            <Author>Stanislav Chernichkin</Author>
+            <SnippetTypes>
+                <SnippetType>Expansion</SnippetType>
+                <SnippetType>SurroundsWith</SnippetType>
+            </SnippetTypes>
+        </Header>
+        <Snippet>
+            <Declarations>
+                <Literal>
+                    <ID>propName</ID>
+                    <ToolTip>Property name</ToolTip>
+                    <Default>Name</Default>
+                </Literal>
+                <Literal>
+                    <ID>propType</ID>
+                    <ToolTip>Property type</ToolTip>
+                    <Function>SimpleTypeName(global::System.String)</Function>
+                </Literal>
+                <Literal>
+                    <ID>attributeName</ID>
+                    <ToolTip>Configuration attribute name</ToolTip>
+                    <Default>Name</Default>
+                </Literal>
+                <Object>
+                    <ID>isRequired</ID>
+                    <Default>false</Default>
+                    <Type>System.Boolean</Type>
+                </Object>
+
+                <Literal Editable="false">
+                    <ID>DebuggerStepThrough</ID>
+                    <Function>SimpleTypeName(global::System.Diagnostics.DebuggerStepThroughAttribute)</Function>
+                </Literal>
+                <Literal Editable="false">
+                    <ID>ConfigurationProperty</ID>
+                    <Function>SimpleTypeName(global::System.Configuration.ConfigurationPropertyAttribute)</Function>
+                </Literal>
+            </Declarations>
+            <Code Language="csharp">
+                <![CDATA[#region public $propType$ $propName$
+      
+[$ConfigurationProperty$("$attributeName$", IsRequired = $isRequired$)]
+public $propType$ $propName$
+{
+    [$DebuggerStepThrough$]
+    get
+    {
+        return ($propType$)base["$attributeName$"];
+    }
+    [$DebuggerStepThrough$]
+    set
+    {
+        base["$attributeName$"] = value;
+    }
+}
+      
+#endregion]]>
+            </Code>
+        </Snippet>
+    </CodeSnippet>
+</CodeSnippets>

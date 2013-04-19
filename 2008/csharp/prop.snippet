@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<CodeSnippets  xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+    <CodeSnippet Format="1.0.0">
+        <Header>
+            <Title>prop</Title>
+            <Shortcut>prop</Shortcut>
+            <Description>Code snippet for property</Description>
+            <Author>Stanislav Chernichkin</Author>
+            <SnippetTypes>
+                <SnippetType>Expansion</SnippetType>
+                <SnippetType>SurroundsWith</SnippetType>
+            </SnippetTypes>
+        </Header>
+        <Snippet>
+            <Declarations>
+                <Literal>
+                    <ID>propName</ID>
+                    <ToolTip>Property name</ToolTip>
+                    <Default>Name</Default>
+                </Literal>
+                <Literal>
+                    <ID>propType</ID>
+                    <ToolTip>Property type</ToolTip>
+                    <Function>SimpleTypeName(global::System.String)</Function>
+                </Literal>
+                <Literal>
+                    <ID>accessModifier</ID>
+                    <ToolTip>Access modifier</ToolTip>
+                    <Default>public</Default>
+                </Literal>
+
+                <Literal Editable="false">
+                    <ID>DebuggerStepThrough</ID>
+                    <Function>SimpleTypeName(global::System.Diagnostics.DebuggerStepThroughAttribute)</Function>
+                </Literal>
+            </Declarations>
+            <Code Language="csharp">
+                <![CDATA[#region $accessModifier$ $propType$ $propName$
+      
+private $propType$ _$propName$;
+
+$accessModifier$ $propType$ $propName$
+{
+    [$DebuggerStepThrough$]
+    get
+    {
+        return _$propName$;
+    }
+    [$DebuggerStepThrough$]
+    set
+    {
+        _$propName$ = value;
+    }
+}
+      
+#endregion]]>
+            </Code>
+        </Snippet>
+    </CodeSnippet>
+</CodeSnippets>
