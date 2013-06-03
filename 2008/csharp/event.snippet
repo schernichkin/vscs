@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<CodeSnippets  xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+    <CodeSnippet Format="1.0.0">
+        <Header>
+            <Title>event</Title>
+            <Shortcut>event</Shortcut>
+            <Description>Code snippet for event with corresponding virtual method</Description>
+            <Author>Stanislav Chernichkin</Author>
+            <SnippetTypes>
+                <SnippetType>Expansion</SnippetType>
+                <SnippetType>SurroundsWith</SnippetType>
+            </SnippetTypes>
+        </Header>
+        <Snippet>
+            <Declarations>
+                <Literal>
+                    <ID>eventName</ID>
+                    <ToolTip>Event name</ToolTip>
+                    <Default>Name</Default>
+                </Literal>
+                <Literal>
+                    <ID>eventArgType</ID>
+                    <ToolTip>Event argument type</ToolTip>
+                    <Function>SimpleTypeName(global::System.EventArgs)</Function>
+                </Literal>
+            </Declarations>
+            <Code Language="csharp">
+                <![CDATA[#region public event EventHandler<$eventArgType$> $eventName$
+
+public event EventHandler<$eventArgType$> $eventName$;
+
+protected virtual void On$eventName$()
+{
+    var handler = $eventName$;
+    if (handler != null)
+    {
+        handler(this, EventArgs.Empty$end$);
+    }
+}
+
+#endregion]]>
+            </Code>
+        </Snippet>
+    </CodeSnippet>
+</CodeSnippets>
