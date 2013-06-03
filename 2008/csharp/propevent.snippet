@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<CodeSnippets  xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+    <CodeSnippet Format="1.0.0">
+        <Header>
+            <Title>propevent</Title>
+            <Shortcut>propevent</Shortcut>
+            <Description>Code snippet for read/write property and "property changed" event</Description>
+            <Author>Stanislav Chernichkin</Author>
+            <SnippetTypes>
+                <SnippetType>Expansion</SnippetType>
+                <SnippetType>SurroundsWith</SnippetType>
+            </SnippetTypes>
+        </Header>
+        <Snippet>
+            <Declarations>
+                <Literal>
+                    <ID>propertyName</ID>
+                    <ToolTip>Property name</ToolTip>
+                    <Default>Name</Default>
+                </Literal>
+                <Literal>
+                    <ID>propertyType</ID>
+                    <ToolTip>Property type</ToolTip>
+                    <Function>SimpleTypeName(global::System.String)</Function>
+                </Literal>
+            </Declarations>
+            <Code Language="csharp">
+                <![CDATA[#region public $propertyType$ $propertyName$
+
+private $propertyType$ _$propertyName$;
+
+public $propertyType$ $propertyName$
+{
+    get
+    {
+        return _$propertyName$;
+    }
+    set
+    {
+        if (value != _$propertyName$)
+        {
+            _$propertyName$ = value;
+            On$propertyName$Changed();
+        }
+    }
+}
+
+public event EventHandler $propertyName$Changed;
+
+protected virtual void On$propertyName$Changed()
+{
+    var handler = $propertyName$Changed;
+    if (handler != null)
+    {
+        handler(this, EventArgs.Empty);
+    }
+}
+
+#endregion]]>
+            </Code>
+        </Snippet>
+    </CodeSnippet>
+</CodeSnippets>
